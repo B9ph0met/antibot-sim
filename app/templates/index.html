@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form method="POST" action="/login">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="hidden" name="encrypted_username" id="encrypted_username" value="">
+        <input type="hidden" name="encrypted_password" id="encrypted_password" value="">
+        <input type="hidden" name="headless_score" id="headless_score" value="0">
+        <input type="hidden" name="fingerprint" id="fingerprint" value="0">
+        <button type="submit">Login</button>
+    </form>
+    <script>
+        const PUBLIC_KEY = `{{ public_key }}`;
+    </script>
+    <script src="/static/js/sentinel.js"></script>
+</body>
+</html>
