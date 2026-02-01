@@ -13,11 +13,13 @@
         <input type="hidden" name="encrypted_password" id="encrypted_password" value="">
         <input type="hidden" name="headless_score" id="headless_score" value="0">
         <input type="hidden" name="fingerprint" id="fingerprint" value="0">
+        <input type="hidden" name="vm_token" id="vm_token" value="0">
         <button type="submit">Login</button>
     </form>
     <script>
         const PUBLIC_KEY = `{{ public_key }}`;
     </script>
+    <script src="/static/js/vm.js"></script>
     <script src="/static/js/sentinel.js"></script>
 </body>
 </html>

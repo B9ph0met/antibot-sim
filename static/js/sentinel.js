@@ -1,29 +1,17 @@
 
 
-// Run when page loads
 window.addEventListener('DOMContentLoaded', function() {
+    // Get results from VM
+    const vmResult = window.VM_RESULT;
+    const score = vmResult[0];
+    const token = vmResult[vmResult.length - 1];
     
-    // Check for webdriver (most obvious sign)
-    let isWebdriver = navigator.webdriver === true;
+    document.getElementById('headless_score').value = score;
     
-    // Check plugins (headless usually has 0)
-    let pluginCount = navigator.plugins.length;
-    
-    // Check languages
-    let hasLanguages = navigator.languages && navigator.languages.length > 0;
-    
-    // Calculate a simple headless score
-    let headlessScore = 0;
-    if (isWebdriver) headlessScore += 100;
-    if (pluginCount === 0) headlessScore += 30;
-    if (!hasLanguages) headlessScore += 20;
-    
-    headlessScore += checkEngine();
-    
-    document.getElementById('headless_score').value = headlessScore;
+    // Add token to a hidden field (you'll need to add this field to HTML)
+    document.getElementById('vm_token').value = token;
 
     document.getElementById('fingerprint').value = generateFingerprint();
-
 });
 
 function generateFingerprint() {
@@ -34,6 +22,7 @@ function generateFingerprint() {
         screenHeight: screen.height,
         colorDepth: screen.colorDepth,
         timezoneOffset: new Date().getTimezoneOffset(),
+        pluginCount: navigator.plugins.length,
         canvas: simpleHash(getCanvasFingerprint())
     };
     
